@@ -1,0 +1,306 @@
+\documentclass[11pt,oneside]{article}
+\input{coursHeadings}
+\usepackage[raccourcis]{FAST}
+\usepackage[%
+    pdftitle={Produits Procédés Matériaux -- },
+    pdfauthor={Xavier Pessoles},
+    colorlinks=true,
+    linkcolor=blue,
+    citecolor=magenta]{hyperref}
+
+\usepackage{pifont}
+
+
+% \makeatletter \let\ps@plain\ps@empty \makeatother
+%% DEBUT DU DOCUMENT
+%% =================
+\sloppy
+\hyphenpenalty 10000
+
+\newcommand{\Pointilles}[1][3]{%
+\multido{}{#1}{\makebox[\linewidth]{\dotfill}\\[\parskip]
+}}
+
+
+\colorlet{shadecolor}{orange!15}
+
+\newtheorem{theorem}{Theorem}
+
+
+\begin{document}
+
+
+\newboolean{prof}
+\setboolean{prof}{true}
+%------------- En tetes et Pieds de Pages ------------
+\pagestyle{fancy}
+\renewcommand{\headrulewidth}{0pt}
+
+\fancyhead{}
+\fancyhead[L]{%
+\noindent\noindent\begin{minipage}[c]{2.6cm}
+%Lycée Rouvière PTSI
+\includegraphics[width=2cm]{png/logo_ptsi.png}%
+\end{minipage}
+}
+
+\fancyhead[C]{\rule{12cm}{.5pt}}
+
+\fancyhead[R]{%
+\noindent\begin{minipage}[c]{3cm}
+\begin{flushright}
+\footnotesize{\textit{\textsf{Sciences Industrielles\\ pour l'Ingénieur}}}%
+\end{flushright}
+\end{minipage}
+}
+
+\renewcommand{\footrulewidth}{0.2pt}
+
+\fancyfoot[C]{\footnotesize{\bfseries \thepage}}
+\fancyfoot[L]{\footnotesize{2012 -- 2013} \\ X. \textsc{Pessoles}}
+\ifthenelse{\boolean{prof}}{%
+\fancyfoot[R]{\footnotesize{Cours -- CI 6 : PPM -- P}}
+}{%
+\fancyfoot[R]{\footnotesize{Cours -- CI 6 : PPM}}
+}
+
+
+
+\begin{center}
+ \huge\textsc{CI 6 -- PPM -- Produits Procédés Matériaux}
+
+ \large\textsc{Élaboration des pièces mécaniques. Introduction de la chaîne numérique.}
+\end{center}
+
+\begin{center}
+ \LARGE\textsc{Chapitre 4 -- Traitements thermiques}
+\end{center}
+
+%\begin{flushright}
+%\textit{D'après documents de Jean-Pierre Pupier}
+%\end{flushright}
+
+\vspace{.5cm}
+
+
+
+\begin{minipage}[c]{.2\linewidth}
+\begin{center}
+\includegraphics[height=2.5cm]{png/four}
+\textit{Four pour tremper des aciers -- $1050^{\text{o}}C$ -- 80 tonnes \cite{four}}
+\end{center}
+\end{minipage} \hfill
+\begin{minipage}[c]{.2\linewidth}
+\begin{center}
+\includegraphics[height=2.5cm]{png/induction}
+\textit{Trempe en surface par induction \cite{induction}}
+\end{center}
+\end{minipage} \hfill
+\begin{minipage}[c]{.2\linewidth}
+\begin{center}
+\includegraphics[height=2.5cm]{png/cementation}
+\textit{Four sous vide pour cémentation \cite{cementation}}
+\end{center}
+\end{minipage} \hfill
+\begin{minipage}[c]{.2\linewidth}
+\begin{center}
+\includegraphics[width=.9\textwidth]{png/grenaillage}
+\textit{Grenaillage de pièce en acier \cite{grenaillage}}
+\end{center}
+\end{minipage}
+
+\vspace{.5cm}
+
+
+Outre la composition des matériaux, les traitements thermiques peuvent avoir un effet considérable sur les performances mécaniques des matériaux (résistance élastique, résistance mécanique, dureté résilience). Nous présentons ici quelques traitements thermiques. 
+
+
+%\begin{center}
+%\includegraphics[width=.9\textwidth]{png/cyclev.png}
+
+%\textit{Cycle de conception d'un produit}
+%\end{center}
+
+%\begin{prob}
+%\textsc{Problématique :}
+
+%En phase d'avant conception d'un produit, quels sont les critères qui vont permettre de choisir les matériaux à utiliser ?
+%\end{prob}
+
+\begin{savoir}
+\textsc{Savoirs :}
+\begin{itemize}
+\item Connaître les principaux traitements thermiques sur les aciers, leur déroulement, et leurs influences sur les caractéristiques mécaniques
+\end{itemize}
+\end{savoir}
+
+%\newpage 
+
+\setlength{\parskip}{0ex plus 0.2ex minus 0ex}
+ \renewcommand{\contentsname}{}
+ \renewcommand{\baselinestretch}{1}
+
+\tableofcontents
+
+ \renewcommand{\baselinestretch}{1.2}
+\setlength{\parskip}{2ex plus 0.5ex minus 0.2ex}
+
+% \vspace{1cm}
+\textit{Ce document évolue. Merci de signaler toutes erreurs ou coquilles.}
+
+%\newpage
+
+\section{Le trempe}
+\subsection{Principe de la trempe}
+
+\begin{obj}
+La trempe est un traitement thermique qui permet d'augmenter la dureté d'un matériau. Cette augmentation de dureté est obtenue par transformation de l'austénite en \textbf{martensite}. 
+\end{obj}
+
+La trempe d'un acier se déroule en 3 étapes  :
+\begin{enumerate}
+\item on chauffe l'acier dans le but que le fer $\alpha$ (structure CC) soit transformé en fer  $\gamma$  (structure CFC);
+\item on maintien en température afin de s'assurer que la transformation soit totale;
+\item on refroidit alors l'acier afin de capturer la structure cristallographique.
+\end{enumerate}
+
+En accord avec le diagramme Fer-Carbone, la température de chauffage dépend du pourcentage de carbone. Usuellement, on chauffe à 50 degrés de plus que la température de changement de phase.
+
+Usuellement, le refroidissement est continu. Les techniques de refroidissement sont diverses :
+\begin{itemize}
+\item la pièce peut être laissée dans le four (coupé);
+\item à l'air ambiant;
+\item à l'huile;
+\item à l'eau normale ou salée;
+\item de façon cryogénique.
+\end{itemize}
+
+Le refroidissement peut se faire à l'eau ou à l'huile. Il faut que la vitesse de refroidissement soit suffisamment rapide pour éviter que le fer repasse en CC.
+
+\begin{rem}
+\begin{itemize}
+\item Le refroidissement brutal de l'acier permet d'augmenter la dureté de l'acier. Cependant, ce refroidissement brutal crée aussi des tensions internes qui rendent le matériau plus fragile. 
+\item La martensite apparaît dans une certaine fourchette de température. Ainsi, pour obtenir la meilleure transformation possible, il peut être nécessaire, lors du refroidissement, de stationner à une certaine température. On parle alors de trempe à maintien isotherme. Afin de maintenir l'acier à une température précise, on le place dans un bain d'étain fondu, de zinc fondu ou de plomb fondu. 
+\end{itemize}
+\end{rem}
+
+\subsection{Trempes en surface}
+
+Lorsqu'on souhaite uniquement augmenter les caractéristiques mécaniques en surface, il existe des procédés de trempe superficielle : 
+\begin{itemize}
+\item pour les petites séries, il est possible de chauffer la pièce au chalumeau;
+\item pour des séries plus conséquentes, il est possible de réaliser une trempe par induction : la pièce est alors placée dans un solénoïde parcouru par une tension haute fréquence. Le courant induit dans la pièce provoque son échauffement.
+\end{itemize}
+
+
+
+\subsection{Les effets de la trempe}
+
+De manière générale, la présence de martensite
+
+\begin{minipage}[c]{.45\linewidth}
+\begin{itemize}
+\item[\ding{51}] augmente la dureté;
+\item[\ding{51}] augmente la ténacité;
+\item[\ding{51}] augmente très faiblement le module de Young;
+\end{itemize}
+\end{minipage}\hfill
+\begin{minipage}[c]{.45\linewidth}
+\begin{itemize}
+\item[\ding{55}] diminue l'allongement pour cent;
+\item[\ding{55}] diminue le coefficient de striction;
+\item[\ding{55}] diminue le coefficient de résilience.
+\end{itemize}
+\end{minipage}
+
+La présence de chrome, de nickel, de bore, de molybdène améliorent la trempabilité des aciers.
+
+\subsection{L'essai de trempabilité}
+
+\begin{minipage}[c]{.5\linewidth}
+L'essai de Jominy permet d'évaluer la trempabilité des matériaux. Cet essai consiste à tremper un cylindre en acier de longueur 100mm et de diamètre 25 mm. Le cylindre est alors refroidi sur une des faces. On mesure alors la dureté en fonction de l'éloignement de la zone de trempe. 
+\end{minipage}\hfill
+\begin{minipage}[c]{.45\linewidth}
+\begin{center}
+\includegraphics[width=\textwidth]{png/jominy}
+\end{center}
+\end{minipage}
+
+
+
+\section{Le revenu}
+
+\begin{obj}
+Le revenu suit la trempe. Son but est
+de supprimer les tensions internes de l'acier dons le but de réduire sa fragilité. En conséquence il diminue aussi sa dureté. 
+\end{obj}
+
+Les étapes du revenu sont les suivantes :
+\begin{enumerate}
+\item chauffage du matériau en dessous de la température d'austénisation;
+\item maintien en température pendant une durée d'environ 2 heures;
+\item refroidissement de l'ordre d'une heure.
+\end{enumerate}
+
+\section{Le recuit}
+
+\begin{obj}
+Le but du recuit est de supprimer les tensions internes d'un matériau suite à une trempe non désirée. En effet, suite au moulage, ou soudage ou au forgeage d'une pièce, le refroidissement peut faire apparaître les composants de la trempe. 
+\end{obj}
+
+Les étapes du recuit sont les suivantes :
+\begin{enumerate}
+\item chauffage du matériau \textbf{au dessus} de la température d'austénisation (75 degrés de plus);
+\item maintien en température pendant une durée d'environ 30 minutes;
+\item refroidissement lent.
+\end{enumerate}
+
+Le recuit permet ainsi de supprimer les tensions internes de la pièces et de supprimer les traces de martensite. La pièce, moins dure, est ainsi plus simple à usiner.
+
+
+\section{La cémentation}
+\begin{obj}
+Le but de la cémentation est d'augmenter la dureté de la pièce \textbf{en surface}. Elle est suivie d'une trempe.
+\end{obj}
+
+La cémentation s'obtient par chauffe de la pièce dans un environnement riche en carbone. Celui-ci va alors se diffuser sur la couche externe (0,1 à 3 mm) de la pièce provoquant ainsi un accroissement de la dureté en surface (jusqu'à 63 HRc). 
+
+De par sa mise ne \oe{}uvre, la cémentation est plus facile à obtenir pour des aciers faiblement carbonés (C10 à C30). 
+
+
+La cémentation puis la trempe pouvant provoquer une déformation de la pièce, il est nécessaire de rectifier la pièce afin de supprimer le défaut de forme. 
+
+\section{La nitruration}
+
+\begin{obj}
+Le but de la nitruration est d'augmenter la dureté superficielle de façon conséquente pour une pièce qui a déjà été trempée et revenue.
+\end{obj}
+
+Le durcissement est obtenu par chauffe de la pièce (à environ 550 degrés) dans une atmosphère azotée. L'azote va former des nitrures de fer en surface. 
+
+\begin{thebibliography}{2}
+\bibitem{four}{\url{http://www.ferrycapitain.fr/capacite_production/traitement.aspx}}
+
+\bibitem{induction}{\url{http://lopfa.etsmtl.ca/equipements.php?page=machine_induction}}
+\bibitem{cementation}{\url{http://www.directindustry.fr/prod/solar-manufacturing/fours-sous-vide-pour-cementation-sous-vide-53729-714465.html}}
+\bibitem{grenaillage}{\url{http://www.solyap.com/grenaillage.php}}
+
+%\bibitem{ldr}{LDR Médical \url{http://fr.ldrmedical.com/Produits/Thoraco-lombaire/MobidiscProthèsededisquelombaire}}
+%\bibitem{dent}{Protilab \url{http://www.protilab.com/fr/prothese/7/Couronne+sur+implant}}
+%\bibitem{wafer}{\url{http://www.efficacite-electrique.fr/2012/03/usa-semi-conducteurs-plus-compacts-meilleure-efficacite-electrique/}}
+%\bibitem{carter}{\url{http://www.directindustry.fr/prod/sermes/moto-reducteurs-electriques-a-vis-sans-fin-a-carter-en-fonte-7542-424078.html}}
+%\bibitem{fer}{\url{http://www.zpag.net/Tecnologies_Indistrielles/Metaux_Ferreux.htm}}
+%\bibitem{a350}{© Airbus S.A.S.}
+
+%\bibitem{forgelibre}{Forge libre -- \url{http://www.union-des-forgerons.fr/fr/activite/forge}}
+%\bibitem{extrusion}{Extrusion de profils d'aluminium -- \url{http://lakealjin.en.supplierlist.com/product_view/lakealjin/189472/101212/aluminum_extrusion_profile.htm}}
+\bibitem{rb}{Supports de cours de Renan Bonnard,PTSI, Lycée Newton, Clichy la Garenne}
+\bibitem{jb}{Supports de cours de Joël Boiron, PTSI, Lycée Gustave Eiffel, Bordeaux}
+%\bibitem{mc}{Supports de cours de Maryline Carrez, Lycée Jules Haag, Besançon}
+%\bibitem{pf}{Supports de cours de Philippe Fichou, Lycée Vauban, Brest \url{http://philippe.fichou.pagesperso-orange.fr/documents/liaisoncomplete2003.pdf}}
+%\bibitem{jpp}{Supports de cours de Jean-Pierre Pupier, Lycée Rouvière, Toulon}
+
+
+\end{thebibliography}
+
+\end{document}
